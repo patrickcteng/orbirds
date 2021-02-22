@@ -1,8 +1,5 @@
 import * as THREE from 'https://unpkg.com/three/build/three.module.js';
 
-import Stats from 'https://unpkg.com/three@0.121.1/examples/jsm/libs/stats.module.js';
-import { GUI } from 'https://unpkg.com/three@0.121.1/examples/jsm/libs/dat.gui.module.js';
-
 import { GPUComputationRenderer } from 'https://unpkg.com/three@0.121.1/examples/jsm/misc/GPUComputationRenderer.js';
 
 /* TEXTURE WIDTH FOR SIMULATION */
@@ -99,7 +96,7 @@ function BirdGeometry() {
 BirdGeometry.prototype = Object.create( THREE.BufferGeometry.prototype );
 
 
-let container, stats;
+let container;
 let camera, scene, renderer;
 let mouseX = 0, mouseY = 0;
 
@@ -140,8 +137,6 @@ function init() {
 
 	initComputeRenderer();
 
-	stats = new Stats();
-	container.appendChild( stats.dom );
 
 	container.style.touchAction = 'none';
 	container.addEventListener( 'pointermove', onPointerMove );
@@ -149,8 +144,6 @@ function init() {
 	//
 
 	window.addEventListener( 'resize', onWindowResize );
-
-	const gui = new GUI();
 
 
 	const effectController = {
@@ -170,11 +163,6 @@ function init() {
 	};
 
 	valuesChanger();
-
-	gui.add( effectController, "separation", 0.0, 100.0, 1.0 ).onChange( valuesChanger );
-	gui.add( effectController, "alignment", 0.0, 100, 0.001 ).onChange( valuesChanger );
-	gui.add( effectController, "cohesion", 0.0, 100, 0.025 ).onChange( valuesChanger );
-	gui.close();
 
 	initBirds();
 
@@ -334,7 +322,6 @@ function animate() {
 	requestAnimationFrame( animate );
 
 	render();
-	stats.update();
 
 }
 
