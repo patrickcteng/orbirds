@@ -122,7 +122,8 @@ animate();
 
 function init() {
 
-	container = document.createElement('div');
+	// container = document.createElement('div');
+	container = document.getElementById('bird-box');
 	document.body.appendChild( container );
 
 	camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 3000 );
