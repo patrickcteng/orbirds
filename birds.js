@@ -307,7 +307,7 @@ function onWindowResize() {
 }
 
 function onPointerMove( event ) {
-
+	console.log(event.isPrimary);
 	if ( event.isPrimary === false ) return;
 
 	mouseX = event.clientX - windowHalfX;
