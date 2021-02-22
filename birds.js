@@ -96,12 +96,12 @@ function BirdGeometry() {
 BirdGeometry.prototype = Object.create( THREE.BufferGeometry.prototype );
 
 
-let container;
+let container = document.getElementById('bird-box');
 let camera, scene, renderer;
 let mouseX = 0, mouseY = 0;
 
-let windowHalfX = window.innerWidth / 2;
-let windowHalfY = window.innerHeight / 2;
+let windowHalfX = container.offsetWidth / 2;
+let windowHalfY = container.offsetHeight / 2;
 
 const BOUNDS = 800, BOUNDS_HALF = BOUNDS / 2;
 
@@ -120,10 +120,10 @@ animate();
 function init() {
 
 	// container = document.createElement('div');
-	container = document.getElementById('bird-box');
+	// container = document.getElementById('bird-box');
 	// document.body.appendChild( container );
 
-	camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 3000 );
+	camera = new THREE.PerspectiveCamera( 75, container.offsetWidth / container.offsetHeight, 1, 3000 );
 	camera.position.z = 350;
 
 	scene = new THREE.Scene();
@@ -296,13 +296,13 @@ function fillVelocityTexture( texture ) {
 
 function onWindowResize() {
 
-	windowHalfX = window.innerWidth / 2;
-	windowHalfY = window.innerHeight / 2;
+	windowHalfX = container.offsetWidth / 2;
+	windowHalfY = container.offsetHeight / 2;
 
-	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.aspect = container.offsetWidth / container.offsetHeight;
 	camera.updateProjectionMatrix();
 
-	renderer.setSize( window.innerWidth, window.innerHeight );
+	renderer.setSize( container.offsetWidth, container.offsetHeight );
 
 }
 
